@@ -6,7 +6,10 @@ namespace Tracker.Models
     public class LocalUser
     {
         [Key]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
+        [Required(ErrorMessage = "UserName is required.")]
+        public string UserName { get; set; }
 
         [Column(TypeName = "nvarchar(20)")]
         [Required(ErrorMessage = "Name is required.")]
