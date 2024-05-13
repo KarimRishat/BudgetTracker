@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+
+@{
+	ViewData["PageTitle"] = "Application Roles";
+	ViewData["PageActionText"] = "+ New Role";
+	ViewData["PageActionUrl"] = "/AppRoles/Create";
+}
+
+@* <h1>View Roles</h1> *@
+@* <p>
+	<a asp-action="Create">Create Role</a>
+</p> *@
+
+<div class="row">
+	<div class="col-md-7">
+		<ejs-grid id="roles" dataSource="@Model" gridLines="None"
+				  allowSorting="true" allowPaging="true">
+			<e-grid-pagesettings pageSize="5"></e-grid-pagesettings>
+			<e-grid-columns>
+				<e-grid-column headerText="Id" field="Id"></e-grid-column>
+				<e-grid-column headerText="Name" field="Name"></e-grid-column>
+			</e-grid-columns>
+		</ejs-grid>
+	</div>
+	<div class="col-md-5">
+		<div class="widget h-100 d-flex justify-content-center align-items-center">
+			<i class="fa-solid fa-person-circle-question fa-2xl"></i>
+		</div>
+	</div>
+</div>
+
+
+
+@* <table class="table">
+	<thead>
+		<tr>
+			<th>@Html.DisplayNameFor(model=>model.Id)</th>
+		
+			<th>@Html.DisplayNameFor(model=>model.Name)</th>
+
+			<th></th>
+		</tr>
+
+	</thead>
+	<tbody>
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>@Html.DisplayFor(modelItem=>item.Id)</td>
+				<td>@Html.DisplayFor(modelItem => item.Name)</td>
+			</tr>
+		}
+	</tbody>
+</table> *@

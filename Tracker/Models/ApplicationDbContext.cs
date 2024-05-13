@@ -10,5 +10,7 @@ namespace Tracker.Models
         public DbSet<LocalUser> LocalUsers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

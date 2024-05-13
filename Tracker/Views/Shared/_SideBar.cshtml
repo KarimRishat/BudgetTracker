@@ -26,6 +26,26 @@
         iconCss = "fa-solid fa-arrow-right-arrow-left",
         url = "/Transaction"
     });
+    menuItems.Add(new
+    {
+        text = "Roles",
+        iconCss = "fa-solid fa-person-circle-question",
+        url = "/AppRoles"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Register",
+        iconCss = "fa-solid fa-circle-user",
+        url = "/Identity/Account/Register"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Login",
+        iconCss = "fa-solid fa-person-circle-check",
+        url = "/Identity/Account/Login"
+    });
 
     // menuItems.Add(new
     // {
@@ -71,6 +91,7 @@
                   items="menuItems"
                   orientation="Vertical"
                   hamburgerMode></ejs-menu>
+        @* <partial name="_LoginPartial" /> *@
     </e-content-template>
 </ejs-sidebar>
 
