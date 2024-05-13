@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Tracker.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Tracker
 {
@@ -18,6 +19,8 @@ namespace Tracker
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 
             var app = builder.Build();
