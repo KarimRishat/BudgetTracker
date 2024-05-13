@@ -12,5 +12,7 @@ namespace Tracker.Models
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        public DbSet<TrackerUser> TrackerUser { get; set; }
     }
 }

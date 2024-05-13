@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Tracker.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class AppRolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
