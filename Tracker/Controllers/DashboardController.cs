@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Numerics;
@@ -6,7 +7,8 @@ using Tracker.Models;
 
 namespace Tracker.Controllers
 {
-	public class DashboardController : Controller
+    [Authorize]
+    public class DashboardController : Controller
 	{
         private readonly ApplicationDbContext _context;
 

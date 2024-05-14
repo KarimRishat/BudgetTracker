@@ -320,3 +320,17 @@ img.profile-pic {
 .app-logo {
     padding: 10px 10px;
 }
+
+
+
+form {
+    width: 300px; 
+    margin: 0 auto; 
+}
+
+.form-row {
+    background-color: #212b36;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
