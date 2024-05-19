@@ -5,7 +5,7 @@ using Tracker.Models;
 
 namespace Tracker.Controllers
 {
-    [Authorize(Roles ="admin")]
+    //[Authorize(Roles ="admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,6 +17,14 @@ namespace Tracker.Controllers
 
         public IActionResult Index()
         {
+            string userName = null;
+
+            if (Request.Cookies["UserName"] != null)
+            {
+                userName = Request.Cookies["UserName"];
+            }
+
+            ViewBag.UserName = userName;
             return View();
         }
 

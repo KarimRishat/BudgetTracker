@@ -24,7 +24,6 @@ namespace Tracker
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,7 +43,21 @@ namespace Tracker
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            //app.Run(async (context) =>
+            //{
+            //    if (context.Request.Cookies.ContainsKey("name"))
+            //    {
+            //        string? name = context.Request.Cookies["name"];
+            //        await context.Response.WriteAsync($"Hello {name}!");
+            //    }
+            //    else
+            //    {
+            //        context.Response.Cookies.Append("name", "Tom");
+            //        await context.Response.WriteAsync("Hello World!");
+            //    }
+            //});
 
             app.Run();
         }

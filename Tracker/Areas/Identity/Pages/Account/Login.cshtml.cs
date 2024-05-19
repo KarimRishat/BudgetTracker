@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Tracker.Models;
 
 namespace Tracker.Areas.Identity.Pages.Account
 {
@@ -115,6 +116,16 @@ namespace Tracker.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    CookieOptions options = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddHours(1),
+                        HttpOnly = true,
+                        Secure = true, // Set to true if using HTTPS
+                        SameSite = SameSiteMode.Strict
+                    };
+                    Response.Cookies.Append("Username", Input.Email, options);
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -4,5 +4,20 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (!string.IsNullOrEmpty(ViewBag.UserName))
+    {
+        <h2>@Html.Encode(ViewBag.UserName)</h2>
+    }
+    else
+    {
+        <h2>Guest</h2>
+    }
+    <p>
+        Role from Query string - @ViewData["role"]
+    </p>
+
+    <p>
+        From Session -  @ViewData["role2"]
+    </p>
+    @* <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
 </div>
