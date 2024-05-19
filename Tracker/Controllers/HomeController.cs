@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
 using Tracker.Models;
 
@@ -10,26 +11,26 @@ namespace Tracker.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IMemoryCache _cache;
+
+
+        public HomeController(ILogger<HomeController> logger, IMemoryCache memoryCache)
         {
             _logger = logger;
+            _cache = memoryCache;
         }
 
         public IActionResult Index()
         {
             string userName = null;
+            string loggedInUsername = _cache.Get<string>("Username");
 
             if (Request.Cookies["UserName"] != null)
             {
                 userName = Request.Cookies["UserName"];
             }
 
-            if (Request.Query.Keys.Contains("role"))
-            {
-                var t = Request.Query["role"].ToString();
-                @ViewData["role"] = t;
-                HttpContext.Session.SetString("role", t);
-            }
+            ViewData["LoggedInUsername"] = loggedInUsername;
 
             if (HttpContext.Session.Keys.Contains("UserName"))
             {

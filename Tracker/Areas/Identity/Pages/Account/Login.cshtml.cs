@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Tracker.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Tracker.Areas.Identity.Pages.Account
 {
@@ -22,12 +23,14 @@ namespace Tracker.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IMemoryCache _cache;
 
-
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger,
+            IMemoryCache memoryCache)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _cache = memoryCache;
         }
 
         /// <summary>
@@ -129,7 +132,7 @@ namespace Tracker.Areas.Identity.Pages.Account
 
                     HttpContext.Session.SetString("Username", Input.Email);
 
-                    
+                    _cache.Set("Username", Input.Email, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
 
 
                     return LocalRedirect(returnUrl);
