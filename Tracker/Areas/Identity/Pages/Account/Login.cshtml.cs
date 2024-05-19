@@ -23,6 +23,7 @@ namespace Tracker.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
+
         public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
@@ -125,6 +126,11 @@ namespace Tracker.Areas.Identity.Pages.Account
                         SameSite = SameSiteMode.Strict
                     };
                     Response.Cookies.Append("Username", Input.Email, options);
+
+                    HttpContext.Session.SetString("Username", Input.Email);
+
+                    
+
 
                     return LocalRedirect(returnUrl);
                 }

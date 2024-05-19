@@ -24,6 +24,19 @@ namespace Tracker.Controllers
                 userName = Request.Cookies["UserName"];
             }
 
+            if (Request.Query.Keys.Contains("role"))
+            {
+                var t = Request.Query["role"].ToString();
+                @ViewData["role"] = t;
+                HttpContext.Session.SetString("role", t);
+            }
+
+            if (HttpContext.Session.Keys.Contains("UserName"))
+            {
+                var t = HttpContext.Session.GetString("UserName");
+                @ViewData["UserName"] = t;
+            }
+
             ViewBag.UserName = userName;
             return View();
         }

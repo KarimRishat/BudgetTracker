@@ -14,6 +14,9 @@ namespace Tracker
 
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
@@ -40,6 +43,8 @@ namespace Tracker
             app.UseAuthorization();
 
             app.MapRazorPages();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
