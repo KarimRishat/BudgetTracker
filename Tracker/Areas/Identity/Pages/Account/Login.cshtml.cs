@@ -125,14 +125,14 @@ namespace Tracker.Areas.Identity.Pages.Account
                     {
                         Expires = DateTime.Now.AddHours(1),
                         HttpOnly = true,
-                        Secure = true, // Set to true if using HTTPS
+                        Secure = true, 
                         SameSite = SameSiteMode.Strict
                     };
                     Response.Cookies.Append("Username", Input.Email, options);
 
                     HttpContext.Session.SetString("Username", Input.Email);
 
-                    _cache.Set("Username", Input.Email, TimeSpan.FromMinutes(30)); // Cache for 30 minutes
+                    _cache.Set("Username", Input.Email, TimeSpan.FromSeconds(30)); 
 
 
                     return LocalRedirect(returnUrl);
